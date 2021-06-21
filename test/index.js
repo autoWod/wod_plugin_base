@@ -4,29 +4,21 @@
  * @Author: lax
  * @Date: 2021-06-21 16:26:12
  * @LastEditors: lax
- * @LastEditTime: 2021-06-21 16:53:15
+ * @LastEditTime: 2021-06-22 00:11:41
  * @FilePath: \wod_plugin_base\test\index.js
  */
-// ==UserScript==
-// @name         wod_plugin_base_test
-// @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  wod_plugin_base_test
-// @author       lax
-// @match        http://delta.world-of-dungeons.org/*
-// @require       https://code.jquery.com/jquery-3.6.0.min.js
-// @require       https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js
-// @resource      select2-css https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css
-// @require      file://D:\project\lax\autoWod\wod_plugin_base\src\index.js
-// @grant         GM_addStyle
-// @grant         GM_getResourceText
-// ==/UserScript==
 
-(function() {
+function test(){
 	"use strict";
-
-	GM_addStyle(GM_getResourceText("select2-css"));
 	const box = new SelectBox();
-
-	// Your code here...
-})();
+	console.log(box);
+	box.setClasses(CLASSES.ADVENTURER);
+	box.setRace(RACE.GNOME);
+	box.setConsumable(1);
+	box.setMinCondition(6);
+	box.setMaxCondition(0);
+	// box.clear(true);
+	// box.setClasses(CLASSES.MAGE);
+	// box.search();
+	
+};
