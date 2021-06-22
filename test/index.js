@@ -4,12 +4,13 @@
  * @Author: lax
  * @Date: 2021-06-21 16:26:12
  * @LastEditors: lax
- * @LastEditTime: 2021-06-22 00:11:41
+ * @LastEditTime: 2021-06-22 21:43:40
  * @FilePath: \wod_plugin_base\test\index.js
  */
 
-function test(){
+function test() {
 	"use strict";
+
 	const box = new SelectBox();
 	console.log(box);
 	box.setClasses(CLASSES.ADVENTURER);
@@ -20,5 +21,4 @@ function test(){
 	// box.clear(true);
 	// box.setClasses(CLASSES.MAGE);
 	// box.search();
-	
-};
+}

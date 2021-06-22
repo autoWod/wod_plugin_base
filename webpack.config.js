@@ -4,7 +4,7 @@
  * @Author: lax
  * @Date: 2021-04-12 16:44:57
  * @LastEditors: lax
- * @LastEditTime: 2021-06-22 01:23:23
+ * @LastEditTime: 2021-06-22 21:24:33
  * @FilePath: \wod_plugin_base\webpack.config.js
  */
 const path = require("path");
@@ -13,13 +13,14 @@ const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
 	devtool: "inline-cheap-source-map",
-	entry: "./src/index.js",
+	entry: ["./src/index.js"],
 	output: {
 		path: resolve("dist"),
 		filename: "wodBase.js",
 		libraryTarget: "umd",
+		library: "WOD",
 		globalObject: "this",
-		library: "wod_plugin_base"
+		umdNamedDefine: true
 	},
 	optimization: {
 		minimizer: [

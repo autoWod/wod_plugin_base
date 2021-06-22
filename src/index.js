@@ -4,7 +4,7 @@
  * @Author: lax
  * @Date: 2021-06-15 10:50:14
  * @LastEditors: lax
- * @LastEditTime: 2021-06-22 01:17:16
+ * @LastEditTime: 2021-06-23 00:03:51
  * @FilePath: \wod_plugin_base\src\index.js
  */
 
@@ -139,7 +139,7 @@ class SelectBox {
 	 * @description 初始化方法
 	 * @version 1.0.0
 	 */
-	__init(){
+	__init() {
 		this.__checkJquery();
 		this.__checkSelect2();
 		this.__checkGM();
@@ -150,10 +150,10 @@ class SelectBox {
 	 * @description 监测jquery库文件
 	 * @version 1.0.0
 	 */
-	__checkJquery(){
-		this.__check(()=>{
-			$
-		},"无法访问jquery，请引入该库或联系该脚本的开发者！");
+	__checkJquery() {
+		this.__check(() => {
+			$;
+		}, "无法访问jquery，请引入该库或联系该脚本的开发者！");
 	}
 
 	/**
@@ -161,10 +161,10 @@ class SelectBox {
 	 * @description 监测select2库文件
 	 * @version 1.0.0
 	 */
-	__checkSelect2(){
-		this.__check(()=>{
-			$().select2()
-		},"无法访问select2，请引入该库或联系该脚本的开发者！");
+	__checkSelect2() {
+		this.__check(() => {
+			$().select2();
+		}, "无法访问select2，请引入该库或联系该脚本的开发者！");
 	}
 
 	/**
@@ -172,14 +172,14 @@ class SelectBox {
 	 * @description 监测GM功能是否开启
 	 * @version 1.0.0
 	 */
-	__checkGM(){
-		this.__check(()=>{
-			GM_addStyle
-		},"无法访问GM_addStyle，请打开或联系该脚本的开发者！");
-		
-		this.__check(()=>{
-			GM_getResourceText
-		},"无法访问GM_getResourceText，请打开或联系该脚本的开发者！");
+	__checkGM() {
+		this.__check(() => {
+			GM_addStyle;
+		}, "无法访问GM_addStyle，请打开或联系该脚本的开发者！");
+
+		this.__check(() => {
+			GM_getResourceText;
+		}, "无法访问GM_getResourceText，请打开或联系该脚本的开发者！");
 	}
 
 	/**
@@ -189,9 +189,9 @@ class SelectBox {
 	 * @param {*} fun 检查的函数
 	 * @param {*} errmsg 问题的消息
 	 */
-	__check(fun,errmsg){
+	__check(fun, errmsg) {
 		try {
-			fun()
+			fun();
 		} catch (error) {
 			alert(errmsg);
 		}
@@ -203,7 +203,7 @@ class SelectBox {
 	 * @version 1.0.0
 	 * @returns 储存对象
 	 */
-	__getLib(){
+	__getLib() {
 		let lib = window.localStorage;
 		lib || alert("无法访问浏览器数据库，请更换或升级浏览器！");
 		// TODO 兼容无local storage的浏览器
@@ -225,14 +225,14 @@ class SelectBox {
 		const fontColor = one.css("color");
 		const border = one.css("border");
 		const borderRadius = one.css("border-radius");
-		
+
 		// 激活select2
 		const selects = _selects.map(each => {
 			const select = $(each);
 			select.select2();
 			return select;
 		});
-		
+
 		// 设置原皮肤样式
 		GM_addStyle(
 			`
@@ -384,6 +384,7 @@ class SelectBox {
 	setCoordinate(num) {
 		return this.__setSelect(SELECT_ITEM.COORDINATE, num);
 	}
+
 	/**
 	 * @method public
 	 * @description 设置镶嵌
@@ -393,6 +394,7 @@ class SelectBox {
 	setInlay(num) {
 		return this.__setSelect(SELECT_ITEM.INLAY, num);
 	}
+
 	/**
 	 * @method public
 	 * @description 设置属性要求
@@ -461,8 +463,8 @@ class SelectBox {
 	/**
 	 * @method public
 	 * @description 指定选择框，并选择具体的选项
-	 * @param {*} ITEM 
-	 * @param {*} NUM 
+	 * @param {*} ITEM
+	 * @param {*} NUM
 	 * @version 1.0.0
 	 * @returns 选择框对象
 	 */
@@ -472,5 +474,3 @@ class SelectBox {
 		return select;
 	}
 }
-
-export default  SelectBox;
