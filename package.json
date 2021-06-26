@@ -5,7 +5,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "lib": "webpack --mode=production",
+    "lib": "webpack --mode=production --node-env=production",
     "docs": "jsdoc -c conf.json -d docs"
   },
   "dependencies": {},

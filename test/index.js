@@ -4,17 +4,18 @@
  * @Author: lax
  * @Date: 2021-06-21 16:26:12
  * @LastEditors: lax
- * @LastEditTime: 2021-06-22 21:43:40
+ * @LastEditTime: 2021-06-26 16:07:58
  * @FilePath: \wod_plugin_base\test\index.js
  */
 
 function test() {
 	"use strict";
 
+	const SelectBox = WOD.SelectBox;
+
 	const box = new SelectBox();
-	console.log(box);
-	box.setClasses(CLASSES.ADVENTURER);
-	box.setRace(RACE.GNOME);
+	box.setClasses(SelectBox.CLASSES.ADVENTURER);
+	box.setRace(SelectBox.RACE.GNOME);
 	box.setConsumable(1);
 	box.setMinCondition(6);
 	box.setMaxCondition(0);
