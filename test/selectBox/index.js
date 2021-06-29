@@ -4,11 +4,11 @@
  * @Author: lax
  * @Date: 2021-06-21 16:26:12
  * @LastEditors: lax
- * @LastEditTime: 2021-06-26 16:07:58
- * @FilePath: \wod_plugin_base\test\index.js
+ * @LastEditTime: 2021-06-29 21:50:41
+ * @FilePath: \wod_plugin_base\test\selectBox\index.js
  */
 
-function test() {
+function selectBoxTest() {
 	"use strict";
 
 	const SelectBox = WOD.SelectBox;

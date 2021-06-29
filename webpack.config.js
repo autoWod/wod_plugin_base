@@ -4,7 +4,7 @@
  * @Author: lax
  * @Date: 2021-04-12 16:44:57
  * @LastEditors: lax
- * @LastEditTime: 2021-06-26 15:48:37
+ * @LastEditTime: 2021-06-29 22:16:02
  * @FilePath: \wod_plugin_base\webpack.config.js
  */
 const path = require("path");
@@ -28,7 +28,7 @@ module.exports = {
 			new TerserPlugin({
 				terserOptions: {
 					compress: {
-						drop_console: true
+						// drop_console: true
 					}
 				}
 			})
