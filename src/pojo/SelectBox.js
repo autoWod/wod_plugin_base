@@ -4,7 +4,7 @@
  * @Author: lax
  * @Date: 2021-06-15 10:50:14
  * @LastEditors: lax
- * @LastEditTime: 2021-06-26 16:06:08
+ * @LastEditTime: 2021-07-04 00:28:39
  * @FilePath: \wod_plugin_base\src\pojo\SelectBox.js
  */
 
@@ -247,7 +247,27 @@ class SelectBox {
 		// 激活select2
 		const selects = _selects.map(each => {
 			const select = $(each);
-			select.select2();
+			let id = $(select[0].options[0]).attr("value");
+			// 原始value不等 没赋值的视为0
+			if (!id) id = 0;
+			// 开启选项清除功能
+			select
+				.select2({
+					placeholder: {
+						id
+					},
+					allowClear: true
+				})
+				// 阻止点击x后打开搜索栏
+				.on("select2:unselecting", function() {
+					$(this).data("unselecting", true);
+				})
+				.on("select2:opening", function(e) {
+					if ($(this).data("unselecting")) {
+						$(this).removeData("unselecting");
+						e.preventDefault();
+					}
+				});
 			return select;
 		});
 

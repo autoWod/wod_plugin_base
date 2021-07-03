@@ -4,7 +4,7 @@
  * @Author: lax
  * @Date: 2021-06-21 16:26:12
  * @LastEditors: lax
- * @LastEditTime: 2021-06-29 22:20:21
+ * @LastEditTime: 2021-07-03 23:24:34
  * @FilePath: \wod_plugin_base\test\script.js
  */
 // ==UserScript==
@@ -26,8 +26,6 @@
 
 (function() {
 	GM_addStyle(GM_getResourceText("select2-css"));
-	// selectBoxTest();
-	tacticsTest();
-	// Your code here...
-	console.log(window.WOD_CFG);
+	selectBoxTest();
+	// tacticsTest();
 })();
