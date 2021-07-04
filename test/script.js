@@ -4,7 +4,7 @@
  * @Author: lax
  * @Date: 2021-06-21 16:26:12
  * @LastEditors: lax
- * @LastEditTime: 2021-07-03 23:24:34
+ * @LastEditTime: 2021-07-04 11:20:21
  * @FilePath: \wod_plugin_base\test\script.js
  */
 // ==UserScript==
@@ -20,12 +20,14 @@
 // @require      file://D:\project\person\wod\wod_plugin_base\dist\wodBase.js
 // @require      file://D:\project\person\wod\wod_plugin_base\test\selectBox\index.js
 // @require      file://D:\project\person\wod\wod_plugin_base\test\tactics\index.js
+// @require      file://D:\project\person\wod\wod_plugin_base\test\skillMap\index.js
 // @grant         GM_addStyle
 // @grant         GM_getResourceText
 // ==/UserScript==
 
 (function() {
 	GM_addStyle(GM_getResourceText("select2-css"));
-	selectBoxTest();
+	// selectBoxTest();
+	skillMapTest();
 	// tacticsTest();
 })();

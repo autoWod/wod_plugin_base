@@ -4,7 +4,7 @@
  * @Author: lax
  * @Date: 2021-06-15 10:50:14
  * @LastEditors: lax
- * @LastEditTime: 2021-07-04 00:28:39
+ * @LastEditTime: 2021-07-04 14:28:26
  * @FilePath: \wod_plugin_base\src\pojo\SelectBox.js
  */
 
@@ -119,14 +119,18 @@ const ITEM_POSITION = {
 
 const SEARCH_STATUS = "wod_plugin_base_search_status";
 
+let ont;
+
 /**
  * @class SelectBox
  * @classdesc 搜索框对象
  */
 class SelectBox {
 	constructor() {
-		this.__init();
 		this.lib = this.__getLib();
+		this.__init();
+		this._selects = $(".search_container select");
+		this.setSkillSelectPriority();
 		this.searchButton = $("a.button");
 		this.consumable = $("input[name=item_3usage_item]");
 		this.group = $("input[name=item_3group_item]");
@@ -231,11 +235,11 @@ class SelectBox {
 	 * @method
 	 * @memberof SelectBox
 	 * @description 选择框升级为select2
-	 * @version 1.0.0
+	 * @version 1.0.1
 	 * @returns 选择框对象
 	 */
 	__select2Init() {
-		const _selects = Array.from($(".search_container select"));
+		const _selects = Array.from(this._selects);
 
 		// 获取原本皮肤的样式
 		const one = $(_selects[0]);
@@ -292,7 +296,57 @@ class SelectBox {
 			}
 			`
 		);
+
+		// 滚动条样式
+		GM_addStyle(`
+		::-webkit-scrollbar {/*滚动条整体样式*/
+			width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+			height: 4px;
+		}
+		::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+			border-radius: 5px;
+			-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+			background: rgba(0,0,0,0.2);
+		}
+		::-webkit-scrollbar-track {/*滚动条里面轨道*/
+			-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+			border-radius: 0;
+			background: rgba(0,0,0,0.1);
+		}
+		`);
 		return selects;
+	}
+
+	/**
+	 * @private
+	 * @method
+	 * @memberof SelectBox
+	 * @description 技能栏优先显示可用技能
+	 * @version 1.0.0
+	 */
+	setSkillSelectPriority() {
+		const selects = Array.from(this._selects);
+		const useSkills = selects[SELECT_ITEM.USE_SKILL];
+		const skills = selects[SELECT_ITEM.SKILL];
+		const defaultOption = $(skills.options[0]);
+
+		Array.from(useSkills.options).map(useSkill => {
+			Array.from(skills.options).filter(skill => {
+				if (
+					useSkill.innerHTML === skill.innerHTML &&
+					useSkill.innerHTML !== "&nbsp;"
+				) {
+					const option = $("<option/>");
+					option.addClass($(skill).className);
+					option.val($(skill).val());
+					option.text($(skill).text());
+
+					$(skills).remove($(skill));
+					defaultOption.after(option);
+					return true;
+				}
+			});
+		});
 	}
 
 	/**
@@ -552,6 +606,12 @@ class SelectBox {
 		return select;
 	}
 }
+
+SelectBox.getOnt = () => {
+	if (!ont) ont = new SelectBox();
+	return ont;
+};
+
 SelectBox.SELECT_ITEM = SELECT_ITEM;
 SelectBox.CLASSES = CLASSES;
 SelectBox.RACE = RACE;

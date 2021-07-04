@@ -1,0 +1,52 @@
+/*
+ * @Description:
+ * @Version: 1.0.0
+ * @Author: lax
+ * @Date: 2021-07-04 11:15:42
+ * @LastEditors: lax
+ * @LastEditTime: 2021-07-04 13:11:56
+ * @FilePath: \wod_plugin_base\src\pojo\SkillMap.js
+ */
+
+const lib = window.localStorage;
+let ont;
+class SkillMap {
+	constructor() {
+		this.skills = this.getSkillHandler();
+	}
+
+	save() {
+		const hero = window.WOD.Hero.getOnt();
+		const data = { skills: this.skills };
+		if (hero.name) lib.setItem(`wod-${hero.name}`, JSON.stringify(data));
+	}
+
+	getSkillHandler() {
+		const skills = Array.from($($(".content_table tbody")[0]).children()).slice(
+			1
+		);
+		return skills.map(skill => {
+			let baseLevel = 0;
+			let lastLevel = 0;
+			let canUse = false;
+			const level = $(skill)
+				.find("td[align=center][nowrap]")
+				.children();
+			if (level.length === 2) {
+				baseLevel = level[0].innerHTML;
+				lastLevel = level[1].innerHTML;
+				canUse = true;
+			}
+			const name = $(skill)
+				.find("td[valign=top] a")
+				.text();
+			const result = { baseLevel, lastLevel, name, canUse };
+			return result;
+		});
+	}
+}
+SkillMap.getOnt = () => {
+	if (!ont) ont = new SkillMap();
+	return ont;
+};
+module.exports = SkillMap;

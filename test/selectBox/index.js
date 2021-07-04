@@ -4,7 +4,7 @@
  * @Author: lax
  * @Date: 2021-06-21 16:26:12
  * @LastEditors: lax
- * @LastEditTime: 2021-07-03 23:35:00
+ * @LastEditTime: 2021-07-04 10:38:51
  * @FilePath: \wod_plugin_base\test\selectBox\index.js
  */
 
@@ -13,7 +13,9 @@ function selectBoxTest() {
 
 	const SelectBox = WOD.SelectBox;
 
-	const box = new SelectBox();
+	const box = SelectBox.getOnt();
+
+	console.log(box);
 	// box.setClasses(SelectBox.CLASSES.ADVENTURER);
 	// box.setRace(SelectBox.RACE.GNOME);
 	// box.setConsumable(1);
